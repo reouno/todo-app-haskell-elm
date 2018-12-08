@@ -24,8 +24,12 @@ cd simple-todo-app
 yarn start
 ```
 
+access to [http://localhost:3000](http://localhost:3000)
+
 # Run only server
 
 ```
 stack exec haskell-elm01-sample-exe
 ```
+
+get resource with [http://localhost:8081/todos](http://localhost:8081/todos)
