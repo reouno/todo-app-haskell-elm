@@ -1,0 +1,57 @@
+name:                haskell-elm01-sample
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/reouno/haskell-elm01-sample#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Leo Uno
+maintainer:          leouno12@gmail.com
+copyright:           Copyright (c) 2017 Leo Uno
+category:            Development
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib, Todo
+  build-depends:       base >= 4.7 && < 5
+                     , aeson
+                     , containers
+                     , elm-export
+                     , http-api-data
+                     , servant
+                     , servant-ede
+                     , servant-elm
+                     , servant-server
+                     , stm
+                     , transformers
+                     , wai
+                     , wai-cors
+                     , warp
+  default-language:    Haskell2010
+
+executable haskell-elm01-sample-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , haskell-elm01-sample
+  default-language:    Haskell2010
+
+test-suite haskell-elm01-sample-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      app
+  main-is:             Generate.hs
+  build-depends:       base
+                     , haskell-elm01-sample
+                     , elm-export
+                     , servant-elm
+                     , shelly
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/reouno/haskell-elm01-sample

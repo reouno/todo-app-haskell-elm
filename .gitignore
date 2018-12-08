@@ -1,0 +1,6 @@
+.stack-work
+.yo-rc.json
+dist
+elm-stuff
+node_modules
+*.log
