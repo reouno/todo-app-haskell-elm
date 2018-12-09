@@ -25,5 +25,5 @@ spec = Spec ["Generated", "TodoAPI"]
 
 main :: IO ()
 main = do
-    shelly $ mkdir_p "elm-src/Generated"
-    specsToDir [spec] "elm-src"
+    shelly $ mkdir_p "simple-todo-app/src/Generated"
+    specsToDir [spec] "simple-todo-app/src"

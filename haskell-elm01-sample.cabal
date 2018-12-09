@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Lib, Todo
+  exposed-modules:     Resource.Todos, Lib, Todo
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , containers
@@ -25,6 +25,7 @@ library
                      , servant-ede
                      , servant-elm
                      , servant-server
+                     , sqlite-simple
                      , stm
                      , transformers
                      , wai

@@ -12,7 +12,7 @@ type Msg
     | OnTodoDoneUpdate Int (Result Http.Error ())
     | InputNewTodo String
     | CreateNewTodo
-    | OnCreateNewTodo (WebData Todo)
+    | OnCreateNewTodo (WebData (Todo))
     | FocusNewTodoTextfield
 
     | NoOp
