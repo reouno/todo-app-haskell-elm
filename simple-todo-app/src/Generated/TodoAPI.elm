@@ -120,7 +120,8 @@ deleteTodosById capture_id =
         , expect =
             Http.expectStringResponse
                 (\{ body } ->
-                    if String.isEmpty body then
+                    --if String.isEmpty body then
+                    if body == "[]" then
                         Ok ()
                     else
                         Err "Expected the response body to be empty"
