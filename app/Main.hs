@@ -1,7 +1,8 @@
 module Main where
 
 import Lib
-import Resource.Todos
+import Resource.Todos (DbConf(..), conf, initDB)
 
 main :: IO ()
-main = startApp
+main = initDB (db conf) (table conf)
+       >> startApp
