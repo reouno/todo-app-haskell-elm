@@ -1,8 +1,8 @@
-name:                haskell-elm01-sample
+name:                todo-app-haskell-elm
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/reouno/haskell-elm01-sample#readme
+homepage:            https://github.com/reouno/todo-app-haskell-ele#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Leo Uno
@@ -15,7 +15,11 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Resource.Todos, Lib, Todo
+  exposed-modules:     Resource.Todos
+                     , Resource.Users
+                     , Lib
+                     , Todo
+                     , User
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , containers
@@ -33,20 +37,20 @@ library
                      , warp
   default-language:    Haskell2010
 
-executable haskell-elm01-sample-exe
+executable todo-app-haskell-elm-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
-                     , haskell-elm01-sample
+                     , todo-app-haskell-elm
   default-language:    Haskell2010
 
-test-suite haskell-elm01-sample-test
+test-suite todo-app-haskell-elm-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      app
   main-is:             Generate.hs
   build-depends:       base
-                     , haskell-elm01-sample
+                     , todo-app-haskell-elm
                      , elm-export
                      , servant-elm
                      , shelly
@@ -55,4 +59,4 @@ test-suite haskell-elm01-sample-test
 
 source-repository head
   type:     git
-  location: https://github.com/reouno/haskell-elm01-sample
+  location: https://github.com/reouno/todo-app-haskell-elm

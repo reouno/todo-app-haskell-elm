@@ -26,8 +26,7 @@ instance ElmType Todo
 instance FromRow Todo where
     fromRow = Todo <$> field <*> field <*> field
 
-type CRUD
-    = "todos" :> Get '[JSON] [Todo]
-    :<|> "todos" :> ReqBody '[JSON, FormUrlEncoded] Todo :> Post '[JSON] Todo
-    :<|> "todos" :> Capture "id" Int :> ReqBody '[JSON, FormUrlEncoded] Todo :> Put '[JSON] ()
-    :<|> "todos" :> Capture "id" Int :> Delete '[JSON] ()
+type GetTodos = "todos" :> Get '[JSON] [Todo]
+type PostTodo = "todos" :> ReqBody '[JSON, FormUrlEncoded] Todo :> Post '[JSON] Todo
+type PutTodo = "todos" :> Capture "id" Int :> ReqBody '[JSON, FormUrlEncoded] Todo :> Put '[JSON] ()
+type DeleteTodo = "todos" :> Capture "id" Int :> Delete '[JSON] ()

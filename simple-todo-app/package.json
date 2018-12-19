@@ -25,7 +25,7 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "api": "stack build && stack exec haskell-elm01-sample-exe",
+    "api": "stack build && stack exec todo-app-haskell-elm-exe",
     "build": "webpack",
     "watch": "webpack --watch",
     "client": "webpack-dev-server --port 3000",

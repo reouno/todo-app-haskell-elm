@@ -30,7 +30,7 @@ data DbConf = DbConf
     }
 
 conf = DbConf
-    { db = "../haskell-elm01-sample-dev.db"
+    { db = "../todo-app-haskell-elm-dev.db"
     , table = "todos"
     }
 
