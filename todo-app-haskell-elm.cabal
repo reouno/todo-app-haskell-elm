@@ -15,7 +15,11 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Resource.Todos, Lib, Todo
+  exposed-modules:     Resource.Todos
+                     , Resource.Users
+                     , Lib
+                     , Todo
+                     , User
   build-depends:       base >= 4.7 && < 5
                      , aeson
                      , containers

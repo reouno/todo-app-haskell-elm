@@ -22,8 +22,11 @@ import Servant.Server
 import Servant.Server.StaticFiles (serveDirectoryFileServer)
 
 import Resource.Todos
+import qualified Resource.Users as Users
 import Todo (Todo(..))
 import qualified Todo
+import User (User(..))
+import qualified User
 
 startApp :: IO ()
 startApp = do
@@ -44,7 +47,16 @@ myCors = cors (const $ Just policy)
 --    = Get '[HTML "index.html"] Object
 --    :<|> "static" :> Raw
 --    :<|> Todo.CRUD
-type API = Todo.CRUD
+type API
+    = Todo.GetTodos
+    :<|> Todo.PostTodo
+    :<|> Todo.PutTodo
+    :<|> Todo.DeleteTodo
+    :<|> User.GetUsers
+    :<|> User.GetUser
+    :<|> User.PostUser
+    :<|> User.PutUser
+    :<|> User.DeleteUser
 
 api :: Proxy API
 api = Proxy
@@ -54,6 +66,11 @@ server dbPath = getTodos
     :<|> postTodo
     :<|> putTodoId
     :<|> deleteTodoId
+    :<|> getUsers
+    :<|> getUser
+    :<|> postUser
+    :<|> putUserId
+    :<|> deleteUserId
     where
         getTodos :: Handler [Todo]
         getTodos =
@@ -73,28 +90,24 @@ server dbPath = getTodos
             liftIO $ delete dbPath id'
             -- >> return NoContent
 
+        getUsers :: Handler [User]
+        getUsers =
+            liftIO $ Users.selectAll dbPath
+        getUser :: Int -> Handler User
+        getUser id' =
+            liftIO $ Users.select dbPath id'
+        postUser :: User -> Handler User
+        postUser row =
+            liftIO $ Users.insert dbPath row
 
---server' :: TVar (Int, IntMap Todo) -> Server API
---server' db = index
---    :<|> serveDirectoryFileServer "static"
---    :<|> getTodos
---    :<|> postTodo
---    :<|> putTodoId
---    :<|> deleteTodoId
---    where
---        index = pure mempty
---        getTodos = liftIO $ IntMap.elems . snd <$> atomically (readTVar db)
---        postTodo todo = liftIO . atomically $ do
---            (maxId, m) <- readTVar db
---            let
---                newId = maxId + 1
---                newTodo = todo { todoId = newId }
---            writeTVar db (newId, IntMap.insert newId newTodo m)
---            pure newTodo
---        putTodoId tid todo =
---            liftIO . atomically . modifyTVar db . second $ IntMap.insert tid todo
---        deleteTodoId tid =
---        liftIO . atomically . modifyTVar db . second $ IntMap.delete tid
+        -- id' is unused
+        putUserId :: Int -> User -> Handler ()
+        putUserId id' row =
+            liftIO $ Users.update dbPath row
+            -- >> return NoContent
+        deleteUserId :: Int -> Handler ()
+        deleteUserId id' =
+            liftIO $ Users.delete dbPath id'
 
 initTodoList :: [(Int, Todo)]
 initTodoList =
