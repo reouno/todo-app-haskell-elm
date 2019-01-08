@@ -1,5 +1,7 @@
 # haskell-elm01-sample
 
+**This repository will be deleted.**
+
 - server side is almost copied from [this repo](https://github.com/matsubara0507/haskell-and-elm/tree/unuse-extensible)
 
 # Requirements
